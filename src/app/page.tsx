@@ -5,6 +5,7 @@ import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Achievements from "@/components/Achievements";
 import GithubRepos from "@/components/GithubRepos";
+import GitConsole from "@/components/GitConsole";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <Skills />
         <Achievements />
         <GithubRepos />
+        <GitConsole />
         <Contact />
       </main>
 
