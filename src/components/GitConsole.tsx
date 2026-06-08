@@ -28,15 +28,15 @@ export default function GitConsole() {
       
       const parsed = data.slice(0, 6).map((event: any) => {
         let details = "";
-        let commits: string[] = [];
         const repoName = event.repo.name.replace("HelinduS/", "");
         
         if (event.type === "PushEvent") {
-          const count = event.payload.commits?.length || 0;
-          details = `pushed ${count} commit${count > 1 ? "s" : ""} to repo [${repoName}]`;
-          commits = event.payload.commits?.map((c: any) => c.message) || [];
+          const branch = event.payload.ref?.replace("refs/heads/", "") || "main";
+          details = `pushed updates to [${branch}] branch in [${repoName}]`;
         } else if (event.type === "CreateEvent") {
-          details = `created new ${event.payload.ref_type || "repository"} [${repoName}]`;
+          const refType = event.payload.ref_type || "repository";
+          const refName = event.payload.ref ? ` [${event.payload.ref}]` : "";
+          details = `created new ${refType}${refName} in [${repoName}]`;
         } else if (event.type === "PullRequestEvent") {
           details = `${event.payload.action} pull request: "${event.payload.pull_request?.title}" in [${repoName}]`;
         } else if (event.type === "IssuesEvent") {
@@ -56,7 +56,6 @@ export default function GitConsole() {
             second: "2-digit",
           }),
           details,
-          commits,
         };
       });
 
@@ -71,11 +70,6 @@ export default function GitConsole() {
       
       parsed.forEach((evt: GitEvent) => {
         logs.push(`[${evt.date}] github.${evt.type.toLowerCase().replace("event", "")} -> ${evt.details}`);
-        if (evt.commits && evt.commits.length > 0) {
-          evt.commits.forEach((msg) => {
-            logs.push(`      └ commit: "${msg}"`);
-          });
-        }
       });
       
       setTerminalOutput(logs);
