@@ -551,3 +551,126 @@ input::placeholder, textarea::placeholder {
   background: linear-gradient(90deg, transparent 0%, var(--accent-cyan) 50%, transparent 100%);
   opacity: 0.3;
 }
+
+/* ============================================
+   GLOBAL RESPONSIVE LAYOUT
+   ============================================ */
+
+/* Navbar */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none !important;
+  }
+  .mobile-menu-btn {
+    display: block !important;
+  }
+}
+
+/* Hero section */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+    text-align: center;
+    padding: 2rem 1rem !important;
+  }
+  .hero-title {
+    font-size: 2.4rem !important;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem !important;
+    justify-content: center !important;
+  }
+  .hero-stats-container {
+    width: 100% !important;
+  }
+  .hero-actions {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem !important;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions > a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* About section */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* Experience section */
+@media (max-width: 900px) {
+  .experience-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+}
+
+/* Skills section */
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* Achievements section */
+@media (max-width: 900px) {
+  .achievements-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* Projects section */
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .projects-filter {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+  }
+}
+
+/* Contact section */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
+
+/* Container padding on small screens */
+@media (max-width: 576px) {
+  .container {
+    padding: 0 1rem !important;
+  }
+  section {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+}
+
+/* Glass card clip-path on tiny screens - simplify */
+@media (max-width: 400px) {
+  .glass-card {
+    clip-path: none !important;
+    border: 1px solid var(--border-color);
+  }
+}

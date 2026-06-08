@@ -38,7 +38,7 @@ export default function Skills() {
     {
       title: "Frontend Engineering",
       icon: <Monitor size={22} style={{ color: "var(--accent-cyan)" }} />,
-      barColor: "#0ff",
+      barColor: "#00ffff",
       glowColor: "rgba(0, 255, 255, 0.4)",
       skills: [
         { name: "React", level: 90 },
@@ -64,7 +64,7 @@ export default function Skills() {
     {
       title: "Platforms & Tools",
       icon: <Cpu size={22} style={{ color: "var(--accent-pink)" }} />,
-      barColor: "#f0f",
+      barColor: "#ff00ff",
       glowColor: "rgba(255, 0, 255, 0.4)",
       skills: [
         { name: "Unity 3D / VR Dev", level: 78 },
@@ -233,14 +233,6 @@ export default function Skills() {
           ))}
         </div>
       </div>
-
-      <style jsx global>{`
-        @media (max-width: 768px) {
-          .skills-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

@@ -105,7 +105,7 @@ export default function Experience() {
             gap: "4rem",
             alignItems: "start",
           }}
-          className="timeline-grid"
+          className="experience-grid"
         >
           {/* Column 1: Experience */}
           <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
@@ -279,7 +279,7 @@ export default function Experience() {
 
       <style jsx global>{`
         @media (max-width: 768px) {
-          .timeline-grid {
+          .experience-grid {
             grid-template-columns: 1fr !important;
             gap: 3.5rem !important;
           }

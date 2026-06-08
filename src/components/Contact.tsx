@@ -252,38 +252,17 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
+                className="cyber-btn"
                 style={{
-                  padding: "0.9rem 1.5rem",
-                  borderRadius: "8px",
-                  border: "none",
-                  background: "linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%)",
-                  color: "#ffffff",
-                  fontSize: "1rem",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
+                  width: "100%",
                   justifyContent: "center",
-                  gap: "0.5rem",
-                  boxShadow: "0 4px 15px rgba(168, 85, 247, 0.25)",
-                  transition: "all 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  if (status !== "submitting") {
-                    e.currentTarget.style.transform = "translateY(-2px)";
-                    e.currentTarget.style.boxShadow = "0 6px 20px rgba(168, 85, 247, 0.4)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "0 4px 15px rgba(168, 85, 247, 0.25)";
                 }}
               >
                 {status === "submitting" ? (
                   <>
                     <svg
                       className="animate-spin"
-                      style={{ width: "20px", height: "20px", color: "white" }}
+                      style={{ width: "20px", height: "20px", color: "black" }}
                       fill="none"
                       viewBox="0 0 24 24"
                     >

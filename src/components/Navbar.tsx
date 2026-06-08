@@ -199,17 +199,14 @@ export default function Navbar() {
         <a
           href="#contact"
           onClick={() => setIsMobileMenuOpen(false)}
+          className="cyber-btn"
           style={{
-            padding: "0.8rem 2rem",
-            borderRadius: "9999px",
             fontSize: "1.1rem",
-            fontWeight: 600,
-            background: "linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%)",
-            color: "#ffffff",
-            boxShadow: "0 4px 15px rgba(168, 85, 247, 0.3)",
+            fontWeight: 800,
+            marginTop: "1rem"
           }}
         >
-          Get In Touch
+          [ CONNECT ]
         </a>
       </div>
 
