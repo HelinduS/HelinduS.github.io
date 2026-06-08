@@ -1,11 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Code2, Monitor, Layers, Cpu, Server } from "lucide-react";
+import { 
+  Code2, Monitor, Layers, Cpu, Server,
+  Coffee, Binary, Database, Hash, FileJson,
+  Atom, Smartphone, Grid, Network, HardDrive, 
+  Terminal, Box, GitBranch, Boxes, Sparkles
+} from "lucide-react";
 
 interface Skill {
   name: string;
-  level: number; // 0-100
+  icon: React.ComponentType<{ size?: number; style?: React.CSSProperties }>;
 }
 
 interface SkillCategory {
@@ -27,12 +32,12 @@ export default function Skills() {
       barColor: "#9d00ff",
       glowColor: "rgba(157, 0, 255, 0.4)",
       skills: [
-        { name: "Java", level: 85 },
-        { name: "Kotlin", level: 80 },
-        { name: "TypeScript / JavaScript", level: 88 },
-        { name: "C#", level: 75 },
-        { name: "C / C++", level: 65 },
-        { name: "SQL", level: 78 },
+        { name: "Java", icon: Coffee },
+        { name: "Kotlin", icon: Code2 },
+        { name: "TypeScript / JS", icon: FileJson },
+        { name: "C#", icon: Hash },
+        { name: "C / C++", icon: Binary },
+        { name: "SQL", icon: Database },
       ],
     },
     {
@@ -41,11 +46,11 @@ export default function Skills() {
       barColor: "#00ffff",
       glowColor: "rgba(0, 255, 255, 0.4)",
       skills: [
-        { name: "React", level: 90 },
-        { name: "Next.js", level: 85 },
-        { name: "HTML5 & CSS3", level: 92 },
-        { name: "Responsive Design", level: 88 },
-        { name: "CSS Grid / Flexbox", level: 90 },
+        { name: "React", icon: Atom },
+        { name: "Next.js", icon: Layers },
+        { name: "HTML5 & CSS3", icon: Monitor },
+        { name: "Responsive Design", icon: Smartphone },
+        { name: "CSS Grid / Flexbox", icon: Grid },
       ],
     },
     {
@@ -54,11 +59,11 @@ export default function Skills() {
       barColor: "#6366f1",
       glowColor: "rgba(99, 102, 241, 0.4)",
       skills: [
-        { name: "Node.js / Express", level: 80 },
-        { name: ".NET Web API", level: 75 },
-        { name: "PostgreSQL", level: 78 },
-        { name: "SQLite", level: 82 },
-        { name: "RESTful APIs", level: 85 },
+        { name: "Node.js / Express", icon: Server },
+        { name: ".NET Web API", icon: Network },
+        { name: "PostgreSQL", icon: Database },
+        { name: "SQLite", icon: HardDrive },
+        { name: "RESTful APIs", icon: Terminal },
       ],
     },
     {
@@ -67,16 +72,16 @@ export default function Skills() {
       barColor: "#ff00ff",
       glowColor: "rgba(255, 0, 255, 0.4)",
       skills: [
-        { name: "Unity 3D / VR Dev", level: 78 },
-        { name: "Git & GitHub", level: 88 },
-        { name: "Docker", level: 65 },
-        { name: "Linux Terminal", level: 80 },
-        { name: "ShaderLab", level: 60 },
+        { name: "Unity 3D / VR Dev", icon: Box },
+        { name: "Git & GitHub", icon: GitBranch },
+        { name: "Docker", icon: Boxes },
+        { name: "Linux Terminal", icon: Terminal },
+        { name: "ShaderLab", icon: Sparkles },
       ],
     },
   ];
 
-  // Trigger bar animations on scroll into view
+  // Trigger tag stagger animation on scroll into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -85,7 +90,7 @@ export default function Skills() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -131,8 +136,8 @@ export default function Skills() {
             Tech <span className="text-gradient">Arsenal</span>
           </h2>
           <p>
-            Proficiency levels across programming languages, frameworks, and engineering tools
-            measured by project experience and depth of knowledge.
+            Core toolkit and technologies utilized in building cloud systems, 
+            mobile applications, and virtual simulations.
           </p>
         </div>
 
@@ -178,56 +183,60 @@ export default function Skills() {
                 </h3>
               </div>
 
-              {/* Skills list with progress bars */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}>
-                {category.skills.map((skill, sidx) => (
-                  <div key={sidx}>
+              {/* Skills grid of tags */}
+              <div className="skills-list-grid">
+                {category.skills.map((skill, sidx) => {
+                  const Icon = skill.icon;
+                  return (
                     <div
+                      key={sidx}
+                      className="skill-tag"
                       style={{
                         display: "flex",
-                        justifyContent: "space-between",
                         alignItems: "center",
-                        marginBottom: "0.35rem",
+                        gap: "0.65rem",
+                        padding: "0.75rem 1rem",
+                        background: "rgba(255, 255, 255, 0.02)",
+                        border: "1px solid rgba(255, 255, 255, 0.05)",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.85rem",
+                        transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+                        opacity: animated ? 1 : 0,
+                        transform: animated ? "translateY(0)" : "translateY(12px)",
+                        transitionDelay: `${0.05 + sidx * 0.04}s`,
+                      }}
+                      onMouseEnter={(e) => {
+                        const el = e.currentTarget as HTMLDivElement;
+                        el.style.borderColor = category.barColor;
+                        el.style.background = `${category.barColor}08`;
+                        el.style.boxShadow = `0 0 15px -3px ${category.glowColor}`;
+                        el.style.transform = "translateY(-2px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.currentTarget as HTMLDivElement;
+                        el.style.borderColor = "rgba(255, 255, 255, 0.05)";
+                        el.style.background = "rgba(255, 255, 255, 0.02)";
+                        el.style.boxShadow = "none";
+                        el.style.transform = "translateY(0)";
                       }}
                     >
                       <span
                         style={{
-                          fontSize: "0.85rem",
-                          fontFamily: "var(--font-mono)",
-                          color: "#d0d0d0",
+                          color: "var(--accent-green)",
+                          fontSize: "0.8rem",
+                          opacity: 0.6,
+                          userSelect: "none",
                         }}
                       >
+                        $
+                      </span>
+                      <Icon size={16} style={{ color: category.barColor, flexShrink: 0 }} />
+                      <span style={{ color: "#d0d0d0", fontWeight: 500 }}>
                         {skill.name}
                       </span>
-                      <span
-                        style={{
-                          fontSize: "0.75rem",
-                          fontFamily: "var(--font-mono)",
-                          color: category.barColor,
-                          fontWeight: 700,
-                          opacity: animated ? 1 : 0,
-                          transition: "opacity 0.5s ease",
-                          transitionDelay: `${0.3 + sidx * 0.1}s`,
-                        }}
-                      >
-                        {skill.level}%
-                      </span>
                     </div>
-                    <div className="skill-bar-container">
-                      <div
-                        className="skill-bar-fill"
-                        style={{
-                          width: animated ? `${skill.level}%` : "0%",
-                          background: `linear-gradient(90deg, ${category.barColor}88, ${category.barColor})`,
-                          boxShadow: animated
-                            ? `0 0 10px ${category.glowColor}, 0 0 20px ${category.glowColor}`
-                            : "none",
-                          transitionDelay: `${0.1 + sidx * 0.08}s`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))}
