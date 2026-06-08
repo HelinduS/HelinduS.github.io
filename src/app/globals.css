@@ -343,6 +343,7 @@ input, textarea {
   border-radius: 0;
   color: var(--text-primary);
   font-family: var(--font-mono);
+  font-size: 1rem;
   transition: all 0.2s ease;
 }
 
