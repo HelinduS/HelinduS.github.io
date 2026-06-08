@@ -23,6 +23,10 @@ export const metadata: Metadata = {
   description: "Computer Science undergraduate & Software Engineer. Showcasing my projects in Android, Web, and VR engineering including ScholarFlow, Northstar, and Boarding-Bee.",
   authors: [{ name: "Helindu Senadheera" }],
   keywords: ["Software Engineer", "Portfolio", "Next.js", "TypeScript", "Kotlin", "Unity VR", "Helindu"],
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
